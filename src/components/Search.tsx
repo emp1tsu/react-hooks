@@ -4,7 +4,11 @@ type SearchInputChangeEvent = React.FormEvent<HTMLInputElement> & {
   target: HTMLInputElement;
 };
 
-const Search: FC = props => {
+type SearchProps = {
+  search: (searchValue: string) => void;
+};
+
+const Search: FC<SearchProps> = props => {
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearchInputChanges = (e: SearchInputChangeEvent) => {
@@ -17,7 +21,6 @@ const Search: FC = props => {
 
   const callSearchFunction = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    // @ts-ignore
     props.search(searchValue);
     resetInputField();
   };
